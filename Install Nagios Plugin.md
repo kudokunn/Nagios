@@ -31,3 +31,8 @@
         systemctl nagios enable
         
  ### 3: Check lại kết quả tại trang: http://IP_server_nagios/nagios
+
+### Thư mục chưa các file plugins:/usr/local/nagios/libexec/....
+### File cấu hình các command: nagios/etc/objects/commands.cfg
+
+ 
