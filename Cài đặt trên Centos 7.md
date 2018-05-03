@@ -1,6 +1,8 @@
 * B1: Disable selinux
 * B2: Cài các gói cần thiết: 
-    yum install -y gcc glibc glibc-common wget unzip httpd php gd gd-devel perl
+
+         yum install -y gcc glibc glibc-common wget unzip httpd php gd gd-devel perl
+         
 * B3: Download nagios: 
     
        cd /tmp
