@@ -4,7 +4,7 @@
 
 * Plugins là các script có thể được thực thi (Python, PHP, Shell, ...), nó có thể chạy từ command line để kiểm tra trạng thái của host hoặc service, và Nagios sẽ sử dụng kết quả của plugins trả về để xác định trạng thái của host và serivces và nagios sẽ tạo các các action như mong muốn: send notification, handle events ....
 
-### Cài đặt: 
+### 2: Cài đặt: 
 
 * B1: Install các gói cần thiết: 
   
@@ -30,4 +30,4 @@
         systemctl nagios restart
         systemctl nagios enable
         
- ### Check lại kết quả tại trang: http://IP_server_nagios/nagios
+ ### 3: Check lại kết quả tại trang: http://IP_server_nagios/nagios
