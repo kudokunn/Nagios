@@ -87,6 +87,8 @@ Cài nrpe trên hosts:
       systemctl start nrpe.service
       systemctl enable nrpe.service
       
+### Check tại: http://IP_server_nagios/nagios
+      
       
 
 
