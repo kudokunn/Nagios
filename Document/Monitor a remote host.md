@@ -62,28 +62,110 @@ Là các gói packages có chức năng để mở rộng chức năng của Nag
         use                             generic-service
         host_name                       yourhost
         service_description             PING
-        check_command                   check_ping!100.0,20%!500.0,60%
+        check_command                   check_ping!100.0,20%!500.0,60% ### sử dụng ngay plugin tại server kết nối đến host từ xa để kiểm tra
         }
         
         define service {
         use                             generic-service
         host_name                       yourhost
         service_description             SSH
-        check_command                   check_ssh
+        check_command                   check_ssh ### sử dụng ngay plugin tại server kết nối đến host từ xa để kiểm tra
         notifications_enabled           0
         }
-     
+        # => chưa phải là thực chất của nrpe, nó phải là sử dụng lệnh "check_nrpe![tên command được định nghĩa ở client trong file nrpe.conf]"    
+  
+        define service {
+        use                             generic-service
+        host_name                       LoadBalancing
+        service_description             Root partition
+        check_command                   check_local_disk!20%!10%!/ # cái này là plugins check_disk luôn check tại local (ý nghĩa cái local là vì tùy chọn này của nó là không có tham số -h (hosts) => kết quả giống với localhost dù có được định nghĩa nó tại LoadBalancing. Nó giống như check_local_user nó chỉ check tại nó, nếu remote host thì cần check_nrpe!check_user<tại remote host và được định nghĩa trong file cấu hình nrpe.conf tại remote hosts>
+         
+        notifications_enabled           0 # tắt cảnh báo cho nó
+        }
+        
+       ##################### bắt đầu là check_nrpe cho host từ xa
+       
+       define service {
+               use                             generic-service
+               host_name                       LoadBalancing
+               service_description             Users
+               check_command                   check_nrpe!check_users
+       #        notifications_enabled           0
+       }
+
+       define service {
+               use                             generic-service
+               host_name                       LoadBalancing
+               service_description             Total_process
+               check_command                   check_nrpe!check_total_procs
+       #        notifications_enabled           0
+       }
+       
+       define service {
+        use                             generic-service
+        host_name                       LoadBalancing
+        service_description             Load
+        check_command                   check_nrpe!check_load
+        #        notifications_enabled           0
+        }
+
+        define service {
+                use                             generic-service
+                host_name                       LoadBalancing
+                service_description             I/O
+                check_command                   check_nrpe!check_io
+        #        notifications_enabled           0
+        }
+
+        define service {
+                use                             generic-service
+                host_name                       LoadBalancing
+                service_description             Network
+                check_command                   check_nrpe!check_network
+        #        notifications_enabled           0
+        }
+
+        define service {
+        use                             generic-service
+        host_name                       LoadBalancing
+        service_description             Uptime
+        check_command                   check_nrpe!check_uptime
+        #        notifications_enabled           0
+        }
+
+        
 * B5: Restart serivce nagios
        
        systemctl restart nagios
        
 #### Trên remote hosts
 
-Cài nrpe trên hosts:
+* B1: Cài nrpe trên hosts:
 
       sudo yum install epel-release
       sudo yum install nrpe nagios-plugins-all
-      allowed_hosts=127.0.0.1,IP_server_nagios
+  
+* B2: Cấu hình: vim /etc/nagios/nrpe.conf
+      
+       allowed_hosts=127.0.0.1,IP_server_nagios
+      
+* B3: Định nghĩa các command tại nrpe.conf
+
+      # Check disk
+      command[check_disk]=/usr/lib64/nagios/plugins/check_linux_stats.pl -D -w 10 -c 5 -u % -p /,/data,/boot
+      # Check load
+      command[check_load]=/usr/lib64/nagios/plugins/check_linux_stats.pl -L -w 10,8,5 -c 20,18,15
+      # Check IO disk
+      command[check_io]=/usr/lib64/nagios/plugins/check_linux_stats.pl -I -w 100,70 -c 150,100 -p sda3,sda1,sda2
+      # Check network IO
+      command[check_network]=/usr/lib64/nagios/plugins/check_linux_stats.pl -N -w 30000000 -c 45000000 -p eth0
+      # Check uptime
+      command[check_uptime]=/usr/lib64/nagios/plugins/check_linux_stats.pl -U -w 5
+      # Check process
+      command[check_procs]=/usr/lib64/nagios/plugins/check_procs -w 800 -c 1000
+
+* B4: Khởi động lại serivce
+
       systemctl start nrpe.service
       systemctl enable nrpe.service
       
