@@ -2,15 +2,15 @@
 
 ## 1. Hướng dẫn cài đặt nagios
 
-Hướng dẫn cài đặt Nagios [Tại đây](Document/Install nagios server on centos7.md)
+Hướng dẫn cài đặt Nagios [Tại đây](Document/Install_nagios_server_on_centos7.md")
 
 ## 2. Hướng dẫn cài đặt nagios_plugins
 
-Hướng dẫn cài đặt Nagios_plugins [Tại đây](Document/Install Nagios Plugin.md)
+Hướng dẫn cài đặt Nagios_plugins [Tại đây](Document/Install_Nagios_Plugin.md)
 
 ## 3. Hướng dẫn monitor một hosts từ xa
 
-Hướng dẫn giám sát một host từ xa [Tại đây](Document/Monitor a remote host.md)
+Hướng dẫn giám sát một host từ xa [Tại đây](Document/Monitor_a_remote_host.md)
 
 ## ... Nhiều hosts với ví dụ mẫu: hosts group, contacts..., cảnh báo mail,
 
