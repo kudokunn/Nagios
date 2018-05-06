@@ -12,7 +12,7 @@ Hướng dẫn cài đặt Nagios_plugins [Tại đây](Document/Install_Nagios_
 
 Hướng dẫn giám sát một host từ xa [Tại đây](Document/Monitor_a_remote_host.md)
 
-## ... Nhiều hosts với ví dụ mẫu: hosts group, contacts..., cảnh báo mail,
+## Continue... Nhiều hosts với ví dụ mẫu: hosts group, contacts..., cảnh báo mail,
 
 ### Các thư mục quan trọng trong nagios
 
