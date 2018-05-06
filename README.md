@@ -1,5 +1,19 @@
 # Các phần hướng dẫn trong nagios
 
+## 1. Hướng dẫn cài đặt nagios
+
+Hướng dẫn cài đặt Nagios [Tại đây](Document/Install nagios server on centos7.md)
+
+## 2. Hướng dẫn cài đặt nagios_plugins
+
+Hướng dẫn cài đặt Nagios_plugins [Tại đây](Document/Install Nagios Plugin.md)
+
+## 3. Hướng dẫn monitor một hosts từ xa
+
+Hướng dẫn giám sát một host từ xa [Tại đây](Document/Monitor a remote host.md)
+
+## ... Nhiều hosts với ví dụ mẫu: hosts group, contacts..., cảnh báo mail,
+
 ### Các thư mục quan trọng trong nagios
 
 * Thư mục chứa các file cấu hình: /usr/local/nagios/etc/....
@@ -16,4 +30,6 @@
     + File định nghĩa command để monitor hosts, servic như: command.cfg
     + File templates.cfg định nghĩa chung để cho các file khác kế thừa từ nó
     + File contacts.cfg định nghĩa các cách thức để gửi cảnh bảo mail, telegram.
+    
+
     
