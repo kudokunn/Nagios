@@ -6,7 +6,7 @@
 
     + File cấu hình chính nagios.cfg 
     + File cấu hình khác cgi.cfg
-    + File cấu hình định nghĩa các macro, $USERx$ cho các file khác lấy
+    + File cấu hình định nghĩa các macro, $USERx$ cho các file khác lấy resource.cfg
     
 * Thư mục chưa các file plugins: /usr/local/nagios/libexec/....
 
